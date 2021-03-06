@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,14 +19,14 @@ class DatabaseSeeder extends Seeder
             ->count(1)
             ->create([
                 'email' => 'admin@admin.com',
-                'password' => \Hash::make('admin'),
+                'password' => Hash::make('admin'),
             ]);
         $this->call(PermissionsSeeder::class);
 
-        $this->call(ParkingSeeder::class);
+        /*  $this->call(ParkingSeeder::class);
         $this->call(VehicleSeeder::class);
         $this->call(RecordSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(DriverSeeder::class);
+        $this->call(DriverSeeder::class); */
     }
 }
