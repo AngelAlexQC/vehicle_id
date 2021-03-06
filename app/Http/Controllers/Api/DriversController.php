@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\RecordSaved;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -67,16 +68,18 @@ class DriversController extends Controller
      */
     public function findByDNI(Request $request, $dni)
     {
+        // TODO: Vehiculo y Parqueadero
 
-        $driver = Driver::where('dni', $dni)->with(['vehicles', 'records'])->first();
+        $driver = Driver::where('dni', $dni)->with(['vehicles'])->first();
 
         $this->authorize('view', $driver);
 
-        Record::create([
+        $record = Record::create([
             'driver_id' => $driver->id,
             'user_id' => $request->user()->id
         ]);
 
+        broadcast(new RecordSaved($record))->toOthers();
         return $this->success(new DriverResource($driver));
     }
 

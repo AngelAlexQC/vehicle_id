@@ -16,7 +16,9 @@
         "laravel/sanctum": "^2.9",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
+        "laravelcollective/html": "^6.2",
         "laraveles/spanish": "^1.5",
+        "pusher/pusher-php-server": "~4.0",
         "spatie/laravel-permission": "^3.17"
     },
     "require-dev": {
