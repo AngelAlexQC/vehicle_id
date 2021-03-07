@@ -34,7 +34,9 @@
 <body>
     <div id="app">
         @include('layouts.nav')
-        {!! Form::hidden('user_id', Auth::user()->id, ['id' => 'user_id']) !!}
+        @auth
+            {!! Form::hidden('user_id', Auth::user()->id, ['id' => 'user_id']) !!}
+        @endauth
 
         <main class="py-4">
             @yield('content')
