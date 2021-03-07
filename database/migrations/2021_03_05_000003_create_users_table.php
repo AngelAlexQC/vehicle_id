@@ -4,6 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -31,11 +32,11 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-        $user =  User::firstOrNew([
-            'name', 'Administrador',
-            'dni', '0850539479',
+        User::create([
+            'name' => 'Administrador',
+            'dni' => '0850539479',
             'email' => 'admin@admin.com',
-            'password' => Hash::make('admin'),
+            'password' => Hash::make('admin')
         ]);
     }
 
