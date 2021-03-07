@@ -17,7 +17,7 @@ class CreateVehiclesTable extends Migration
             $table->bigIncrements('id');
             $table->string('plate')->unique();
             $table->string('brand');
-            $table->string('registration', 10)->unique();
+            $table->string('registration')->unique();
             $table->unsignedBigInteger('owner_id');
             $table->string('model');
 
