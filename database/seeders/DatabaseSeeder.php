@@ -17,12 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Adding an admin user
-        $user = User::create([
-            'name', 'Administrador',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('admin'),
-        ]);
         Driver::create([
             'dni' => '0850539479',
             'name', 'Ángel Alexander',
@@ -37,7 +31,14 @@ class DatabaseSeeder extends Seeder
             'plate' => 'MBF-5630',
             'registration' => 'EC1234567890X'
         ]);
-        $this->call(PermissionsSeeder::class);
+        // Adding an admin user
+        /* $user = User::create([
+            'name', 'Administrador',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('admin'),
+        ]);
+
+        $this->call(PermissionsSeeder::class); */
 
         /*  $this->call(ParkingSeeder::class);
         $this->call(VehicleSeeder::class);
