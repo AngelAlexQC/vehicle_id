@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Driver;
 use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,6 +22,20 @@ class DatabaseSeeder extends Seeder
             'name', 'Administrador',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin'),
+        ]);
+        Driver::create([
+            'dni' => '0850539479',
+            'name', 'Ángel Alexander',
+            'surname' => 'Quiroz Candela',
+            'email' => 'admin@admin.com',
+            'phone' => '0939851015'
+        ]);
+        Vehicle::create([
+            'brand' => 'Chevrolet',
+            'model' => 'Impala 67',
+            'owner_id' => 1,
+            'plate' => 'MBF-5630',
+            'registration' => 'EC1234567890X'
         ]);
         $this->call(PermissionsSeeder::class);
 
