@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "ext-pdo_sqlite": "^7.3",
+        "fakerphp/faker": "^1.9.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -19,8 +21,7 @@
         "laravelcollective/html": "^6.2",
         "laraveles/spanish": "^1.5",
         "pusher/pusher-php-server": "~4.0",
-        "spatie/laravel-permission": "^3.17",
-        "fakerphp/faker": "^1.9.1"
+        "spatie/laravel-permission": "^3.17"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
