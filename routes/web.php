@@ -8,6 +8,7 @@ use App\Http\Controllers\DriversController;
 use App\Http\Controllers\VehiclesController;
 use App\Http\Controllers\ParkingsController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RecordsController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -41,4 +42,5 @@ Route::prefix('/')
         Route::resource('users', UsersController::class);
         Route::resource('vehicles', VehiclesController::class);
         Route::resource('parkings', ParkingsController::class);
+        Route::resource('records', RecordsController::class);
     });
