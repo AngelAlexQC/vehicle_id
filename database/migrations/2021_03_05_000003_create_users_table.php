@@ -1,8 +1,13 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\PermissionRegistrar;
 
 class CreateUsersTable extends Migration
 {
@@ -22,11 +27,16 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('remember_token', 100)->nullable();
 
-            $table->index('dni');
 
             $table->timestamps();
             $table->softDeletes();
         });
+        $user =  User::firstOrNew([
+            'name', 'Administrador',
+            'dni', '0850539479',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('admin'),
+        ]);
     }
 
     /**
