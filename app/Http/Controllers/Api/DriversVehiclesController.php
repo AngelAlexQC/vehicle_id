@@ -46,7 +46,7 @@ class DriversVehiclesController extends Controller
             'registration' => [
                 'required',
                 'unique:vehicles',
-                'max:10',
+                'max:255',
                 'string',
             ],
         ]);

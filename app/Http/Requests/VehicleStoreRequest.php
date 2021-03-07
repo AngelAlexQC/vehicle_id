@@ -31,7 +31,7 @@ class VehicleStoreRequest extends FormRequest
             'registration' => [
                 'required',
                 'unique:vehicles',
-                'max:10',
+                'max:255',
                 'string',
             ],
         ];
