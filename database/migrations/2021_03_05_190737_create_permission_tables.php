@@ -163,7 +163,7 @@ class CreatePermissionTables extends Migration
         }
         Driver::create([
             'dni' => '0850539479',
-            'name', 'Ángel Alexander',
+            'name' => 'Ángel Alexander',
             'surname' => 'Quiroz Candela',
             'email' => 'admin@admin.com',
             'phone' => '0939851015'
