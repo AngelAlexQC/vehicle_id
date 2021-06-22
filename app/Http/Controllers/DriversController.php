@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\RecordSaved;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Http\Requests\DriverStoreRequest;
 use App\Http\Requests\DriverUpdateRequest;
+use App\Http\Resources\DriverResource;
+use App\Models\Parking;
+use App\Models\Record;
+use App\Models\Vehicle;
 
 class DriversController extends Controller
 {
@@ -24,6 +29,30 @@ class DriversController extends Controller
             ->paginate(5);
 
         return view('app.drivers.index', compact('drivers', 'search'));
+    }
+
+    /**
+     * Find Driver by DNI
+     * Header ['Accept'=>'application/json']
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Driver $driver
+     * @return \Illuminate\Http\Response
+     */
+    public function findByDNI(Request $request)
+    {
+        $driver = Driver::where('dni', $request->dni)->with(['vehicles'])->first();
+        $vehicle_id = Vehicle::find($request->vehicle_id);
+        $parking_id = Parking::find($request->parking_id);
+
+        $this->authorize('view', $driver);
+
+        Record::create([
+            'driver_id' => $driver->id,
+            'vehicle_id' => $vehicle_id,
+            'parking_id' => $parking_id,
+            'user_id' => $request->user()->id
+        ]);
+        return redirect('home');
     }
 
     /**

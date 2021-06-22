@@ -7,6 +7,17 @@
                 <div class="cardm">
                     <div class="card-header">{{ __('Última consulta: ' . Auth::user()->name) }}</div>
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col col-12">
+                                <form action="{{route('drivers.vehicles.find')}}" method="post">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="dni">Buscar Cédula</label>
+                                        <input type="text" class="form-control" name="dni" id="dni" aria-describedby="cedulaHelp" placeholder="Cédula">
+                                        <small id="cedulaHelp" class="form-text text-muted">Ingrese el número de cédula sin guiones</small>
+                                      </div></form>
+                            </div>
+                        </div>
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}

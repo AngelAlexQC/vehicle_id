@@ -39,6 +39,11 @@ Route::prefix('/')
         Route::resource('permissions', PermissionController::class);
 
         Route::resource('drivers', DriversController::class);
+        // Driver by DNI
+        Route::post('drivers/find', [
+            DriversController::class,
+            'findByDNI',
+        ])->name('drivers.vehicles.find');
         Route::resource('users', UsersController::class);
         Route::resource('vehicles', VehiclesController::class);
         Route::resource('parkings', ParkingsController::class);
