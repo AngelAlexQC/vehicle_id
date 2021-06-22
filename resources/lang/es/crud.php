@@ -30,6 +30,18 @@ return [
         ],
     ],
 
+    'registros' => [
+        'name' => 'Registros',
+        'index_title' => 'Registros',
+        'show_title' => 'Mostrar Registro',
+        'inputs' => [
+            'parking_id' => 'Parqueadero',
+            'vehicle_id' => 'Vehículo',
+            'user_id' => 'Usuario',
+            'driver_id' => 'Conductor',
+        ],
+    ],
+
     'usuarios' => [
         'name' => 'Usuarios',
         'index_title' => 'Lista de Usuarios',

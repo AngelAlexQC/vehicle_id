@@ -15,7 +15,6 @@ class PermissionsSeeder extends Seeder
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create default permissions
-        Permission::create(['name' => 'list parkings']);
         Permission::create(['name' => 'view parkings']);
         Permission::create(['name' => 'create parkings']);
         Permission::create(['name' => 'update parkings']);

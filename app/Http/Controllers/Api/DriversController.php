@@ -62,14 +62,14 @@ class DriversController extends Controller
     }
 
     /**
+     * Find Driver by DNI
+     * Header ['Accept'=>'application/json']
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Driver $driver
      * @return \Illuminate\Http\Response
      */
     public function findByDNI(Request $request, $dni)
     {
-        // TODO: Vehiculo y Parqueadero
-
         $driver = Driver::where('dni', $dni)->with(['vehicles'])->first();
 
         $this->authorize('view', $driver);
