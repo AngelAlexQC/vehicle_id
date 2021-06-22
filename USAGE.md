@@ -1,3 +1,13 @@
+# Vehicle Identifier
+API para administrar información de vehículos y conductores.
+## Arquitectura
+
+![Arquitectura](/docs/img/arquitectura.jpg)
+La arquitectura del sistema se basa en un servidor central donde se aloja la base de datos, panel de administrador, base de datos y aplicación web que sirve como API para los diferentes cliente, éstos se comunican con datos en formato JSON para consultar información de conductores y vehículos.
+
+## Diagrama Físico
+![Diagrama Físico](docs/img/Diagrama%20BD.png)
+
 # Documentación
 <!-- ## Desplegar en servidor compartido -->
 
