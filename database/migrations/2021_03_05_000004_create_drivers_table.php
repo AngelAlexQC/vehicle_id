@@ -15,11 +15,11 @@ class CreateDriversTable extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('dni', 10)->unique();
-            $table->string('name');
-            $table->string('surname');
-            $table->string('email');
-            $table->string('phone')->unique();
+            $table->string('dni', 10)->unique()->comment('Cédula del conductor');
+            $table->string('name')->comment('Nombre del conductor');
+            $table->string('surname')->comment('Apellido del Conductor');
+            $table->string('email')->comment('email del conductor');
+            $table->string('phone')->unique()->comment('Celular del conductor');
 
             $table->index('dni');
 

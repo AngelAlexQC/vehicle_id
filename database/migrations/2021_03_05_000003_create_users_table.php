@@ -21,12 +21,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('dni', 10)->unique();
-            $table->string('name');
-            $table->string('photoURL')->nullable();
-            $table->string('email');
+            $table->string('dni', 10)->unique()->comment('Cédula del usuario');
+            $table->string('name')->comment('Nombre del usuario');
+            $table->string('photoURL')->nullable()->comment('Foto del Usuario');
+            $table->string('email')->comment('Correo Electrónico del Usuario');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->comment('Contraseña encriptada del usuario');
             $table->string('remember_token', 100)->nullable();
 
 
