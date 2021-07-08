@@ -17,7 +17,7 @@ class CreateRecordsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('parking_id')->nullable();
-            $table->unsignedBigInteger('driver_id');
+            $table->unsignedBigInteger('driver_id')->nullable();
             $table->unsignedBigInteger('vehicle_id')->nullable();
 
             $table->timestamps();

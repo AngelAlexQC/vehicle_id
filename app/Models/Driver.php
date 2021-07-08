@@ -13,7 +13,7 @@ class Driver extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['dni', 'name', 'surname', 'email', 'phone'];
+    protected $fillable = ['dni', 'name', 'photoURL', 'surname', 'email', 'phone'];
 
     protected $searchableFields = ['*'];
 

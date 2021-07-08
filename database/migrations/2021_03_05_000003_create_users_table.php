@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('dni', 10)->unique();
             $table->string('name');
+            $table->string('photoURL')->nullable();
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -34,7 +35,7 @@ class CreateUsersTable extends Migration
         });
         User::create([
             'name' => 'Administrador',
-            'dni' => '0850539479',
+            'dni' => '0987654321',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin')
         ]);

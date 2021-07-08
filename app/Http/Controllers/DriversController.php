@@ -41,17 +41,27 @@ class DriversController extends Controller
     public function findByDNI(Request $request)
     {
         $driver = Driver::where('dni', $request->dni)->with(['vehicles'])->first();
-        $vehicle_id = Vehicle::find($request->vehicle_id);
-        $parking_id = Parking::find($request->parking_id);
-
-        $this->authorize('view', $driver);
-
-        Record::create([
-            'driver_id' => $driver->id,
+        $vehicle = Vehicle::where('plate', $request->plate)->first();
+        $parking = Parking::where('tag', $request->tag)->first();
+        $driver_id = null;
+        $vehicle_id = null;
+        $parking_id = null;
+        if ($driver) {
+            $driver_id = $driver->id;
+        }
+        if ($vehicle) {
+            $vehicle_id = $vehicle->id;
+        }
+        if ($parking) {
+            $parking_id = $parking->id;
+        }
+        $record = Record::create([
+            'driver_id' => $driver_id,
             'vehicle_id' => $vehicle_id,
             'parking_id' => $parking_id,
             'user_id' => $request->user()->id
         ]);
+        $this->authorize('view', $driver);
         return redirect('home');
     }
 
