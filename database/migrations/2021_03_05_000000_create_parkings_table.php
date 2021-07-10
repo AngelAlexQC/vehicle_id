@@ -14,7 +14,7 @@ class CreateParkingsTable extends Migration
     public function up()
     {
         Schema::create('parkings', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->comment('Identicador para el sistema');
             $table->string('tag')->unique()->comment('Etiqueta del parqueadero');
             $table->string('location')->comment('Ubicación del Parqueadero');
 

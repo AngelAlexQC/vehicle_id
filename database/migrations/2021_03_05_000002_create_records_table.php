@@ -14,7 +14,7 @@ class CreateRecordsTable extends Migration
     public function up()
     {
         Schema::create('records', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->comment('Identicador para el sistema');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('parking_id')->nullable()->comment('Parqueadero');
             $table->unsignedBigInteger('driver_id')->nullable()->comment('Conductor');

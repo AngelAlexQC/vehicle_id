@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->comment('Identicador para el sistema');
             $table->string('dni', 10)->unique()->comment('Cédula del usuario');
             $table->string('name')->comment('Nombre del usuario');
             $table->string('photoURL')->nullable()->comment('Foto del Usuario');
