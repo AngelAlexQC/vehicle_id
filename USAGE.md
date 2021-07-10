@@ -100,9 +100,9 @@ Se obtiene una respuesta JSON:
         "vehicles": [
             {
                 "id": 1,
-                "plate": "MBF-5630",
+                "plate": "MBF5630",
                 "brand": "Chevrolet",
-                "registration": "EC1234567890X",
+                "registration": "EC123456789",
                 "owner_id": 1,
                 "model": "Impala 67",
                 "created_at": "2021-06-22T02:18:54.000000Z",

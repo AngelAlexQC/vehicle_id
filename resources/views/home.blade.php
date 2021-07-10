@@ -48,6 +48,7 @@
                             </h3>
                             <img src="https://picsum.photos/500" class="rounded" style="width: 15rem;height: 15rem;">
                             <p>
+                                @if($record->driver)
                             <ul style="list-style: none;padding-left: 0">
                                 @if($record->driver->phone)
                                 <li>
@@ -58,6 +59,7 @@
                                     <strong>Email:</strong>&nbsp;{{ $record->driver->email }}
                                 </li>
                             </ul>
+                            @endif
                             </p>
                         </div>
                         @endif

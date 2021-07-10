@@ -172,8 +172,8 @@ class CreatePermissionTables extends Migration
             'brand' => 'Chevrolet',
             'model' => 'Impala 67',
             'owner_id' => 1,
-            'plate' => 'MBF-5630',
-            'registration' => 'EC1234567890X'
+            'plate' => 'MBF5630',
+            'registration' => 'EC12345678'
         ]);
     }
 
