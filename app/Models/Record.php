@@ -13,7 +13,15 @@ class Record extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['user_id', 'parking_id', 'driver_id', 'vehicle_id'];
+    protected $fillable = [
+        'dni',
+        'plate',
+        'parking',
+        'user_id',
+        'parking_id',
+        'driver_id',
+        'vehicle_id'
+    ];
 
     protected $searchableFields = ['*'];
 

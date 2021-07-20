@@ -42,7 +42,7 @@ class DriversController extends Controller
     {
         $driver = Driver::where('dni', $request->dni)->with(['vehicles'])->first();
         $vehicle = Vehicle::where('plate', $request->plate)->first();
-        $parking = Parking::where('tag', $request->tag)->first();
+        $parking = Parking::where('tag', $request->parking)->first();
         $driver_id = null;
         $vehicle_id = null;
         $parking_id = null;
@@ -56,6 +56,9 @@ class DriversController extends Controller
             $parking_id = $parking->id;
         }
         $record = Record::create([
+            'dni' => $request->dni,
+            'plate' => $request->plate,
+            'parking' => $request->parking,
             'driver_id' => $driver_id,
             'vehicle_id' => $vehicle_id,
             'parking_id' => $parking_id,

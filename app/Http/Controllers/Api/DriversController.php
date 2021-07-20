@@ -10,7 +10,9 @@ use App\Http\Resources\DriverResource;
 use App\Http\Resources\DriverCollection;
 use App\Http\Requests\DriverStoreRequest;
 use App\Http\Requests\DriverUpdateRequest;
+use App\Models\Parking;
 use App\Models\Record;
+use App\Models\Vehicle;
 use App\Traits\ApiResponser;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,16 +73,32 @@ class DriversController extends Controller
     public function findByDNI(Request $request, $dni)
     {
         $driver = Driver::where('dni', $dni)->with(['vehicles'])->first();
-
-        $this->authorize('view', $driver);
-
+        $vehicle = Vehicle::where('plate', $request->plate)->first();
+        $parking = Parking::where('tag', $request->parking)->first();
+        $driver_id = null;
+        $vehicle_id = null;
+        $parking_id = null;
+        if ($driver) {
+            $driver_id = $driver->id;
+        }
+        if ($vehicle) {
+            $vehicle_id = $vehicle->id;
+        }
+        if ($parking) {
+            $parking_id = $parking->id;
+        }
         $record = Record::create([
-            'driver_id' => $driver->id,
+            'dni' => $request->dni,
+            'plate' => $request->plate,
+            'parking' => $request->parking,
+            'driver_id' => $driver_id,
+            'vehicle_id' => $vehicle_id,
+            'parking_id' => $parking_id,
             'user_id' => $request->user()->id
         ]);
 
         broadcast(new RecordSaved($record))->toOthers();
-        return $this->success(new DriverResource($driver));
+        return $this->success(new DriverResource($record->load(['parking', 'vehicle', 'user', 'driver'])));
     }
 
     /**
