@@ -94,7 +94,7 @@ class DriversController extends Controller
             'driver_id' => $driver_id,
             'vehicle_id' => $vehicle_id,
             'parking_id' => $parking_id,
-            'user_id' => $request->user()->id
+            'user_id' => $request->user() ? $request->user()->id : null
         ]);
 
         broadcast(new RecordSaved($record))->toOthers();

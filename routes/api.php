@@ -33,7 +33,11 @@ Route::middleware('auth:sanctum')
         return $request->user();
     })
     ->name('api.user');
-
+// Driver by DNI
+Route::get('drivers/find/{dni}', [
+    DriversController::class,
+    'findByDNI',
+])->name('drivers.vehicles.find');
 Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
@@ -42,11 +46,7 @@ Route::name('api.')
 
         Route::apiResource('drivers', DriversController::class);
 
-        // Driver by DNI
-        Route::get('/drivers/find/{dni}', [
-            DriversController::class,
-            'findByDNI',
-        ])->name('drivers.vehicles.find');
+
 
         // Driver Vehicles
         Route::get('/drivers/{driver}/vehicles', [
