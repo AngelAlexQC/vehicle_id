@@ -28,16 +28,17 @@ use App\Http\Controllers\Api\ParkingsRecordsController;
 
 Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 
-Route::middleware('auth:sanctum')
-    ->get('/user', function (Request $request) {
-        return $request->user();
-    })
-    ->name('api.user');
 // Driver by DNI
 Route::get('drivers/find/{dni}', [
     DriversController::class,
     'findByDNI',
 ])->name('drivers.vehicles.find');
+Route::middleware('auth:sanctum')
+    ->get('/user', function (Request $request) {
+        return $request->user();
+    })
+    ->name('api.user');
+
 Route::name('api.')
     ->middleware('auth:sanctum')
     ->group(function () {
