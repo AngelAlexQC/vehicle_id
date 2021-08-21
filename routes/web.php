@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/home');
 });
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');

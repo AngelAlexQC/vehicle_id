@@ -55,6 +55,7 @@
                             <th>@lang('crud.registros.inputs.vehicle_id')</th>
                             <th>@lang('crud.registros.inputs.user_id')</th>
                             <th>@lang('crud.registros.inputs.driver_id')</th>
+                            <th>Hora de Registro</th>
                             {{--
                             <th class="text-center">
                                 @lang('crud.common.actions')
@@ -70,6 +71,9 @@
                             <td>{{ optional($record->user)->name ?? '-' }}</td>
                             <td>
                                 {{ optional($record->driver)->name ?? '-' }}
+                            </td>
+                            <td>
+                                {{ $record->created_at }}
                             </td>
                             {{--
                             <td class="text-center" style="width: 134px">
@@ -110,9 +114,9 @@
                                             route('records.destroy', $record)
                                         }}"
                                         method="POST"
-                                        onsubmit="return confirm('{{
+                                        onsubmit=`return confirm('{{
                                             __('crud.common.are_you_sure')
-                                        }}')"
+                                        }}')'
                                     >
                                         @csrf @method('DELETE')
                                         <button
