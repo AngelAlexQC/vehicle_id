@@ -26,4 +26,9 @@ class Driver extends Model
     {
         return $this->hasMany(Record::class);
     }
+
+    public function getNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }
