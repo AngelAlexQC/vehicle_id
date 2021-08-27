@@ -18,11 +18,9 @@ class CreateDriversTable extends Migration
             $table->string('dni', 10)->unique()->comment('Cédula del conductor');
             $table->string('name')->comment('Nombre del conductor');
             $table->string('surname')->comment('Apellido del Conductor');
-            $table->string('email')->comment('Email del conductor');
-            $table->string('phone')->unique()->comment('Celular del conductor');
-
+            $table->string('email')->comment('Email del conductor')->nullable();
+            $table->string('phone')->unique()->comment('Celular del conductor')->nullable();
             $table->index('dni');
-
             $table->timestamps();
             $table->softDeletes();
         });

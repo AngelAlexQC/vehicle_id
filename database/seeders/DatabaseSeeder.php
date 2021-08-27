@@ -6,6 +6,7 @@ use App\Models\Driver;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -18,6 +19,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
+        $path = 'database/seeders/drivers.sql';
+        DB::unprepared(file_get_contents($path));
+        $this->command->info('Drives table seeded!');
         // Adding an admin user
         /* $user = User::create([
             'name', 'Administrador',
