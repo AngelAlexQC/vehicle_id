@@ -48,15 +48,19 @@
                             </h3>
                             <img src="{{ $record->vehicle->photoURL?$record->vehicle->photoURL : 'https://via.placeholder.com/200' }}" class="rounded" style="width: 15rem;height: 15rem;">
                             <p>
-                                @if($record->driver)
-                            <ul style="list-style: none;padding-left: 0">
-                                @if($record->driver->phone)
+                                @if($record->vehicle->owner)
+                                Propietario: <br> {{
+                                    $record->vehicle->owner->name ." ".
+                                    $record->vehicle->owner->surname
+                            }}
+                            <ul style="list-style: none;padding-left: 0; margin-top: 0;">
+                                @if($record->vehicle->owner->phone)
                                 <li>
-                                    <strong>Tel:</strong>&nbsp;{{ $record->driver->phone }}
+                                    <strong>Tel:</strong>&nbsp;{{ $record->vehicle->owner->phone }}
                                 </li>
                                 @endif
                                 <li>
-                                    <strong>Email:</strong>&nbsp;{{ $record->driver->email }}
+                                    <strong>Email:</strong>&nbsp;{{ $record->vehicle->owner->email }}
                                 </li>
                             </ul>
                             @endif
