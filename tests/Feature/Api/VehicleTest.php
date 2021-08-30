@@ -14,7 +14,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class VehiclesControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected function setUp(): void
     {

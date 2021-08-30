@@ -46,7 +46,7 @@
                             <h3>
                                 Placa: {{ $record->vehicle->plate }}
                             </h3>
-                            <img src="https://picsum.photos/500" class="rounded" style="width: 15rem;height: 15rem;">
+                            <img src="{{ $record->vehicle->photoURL?$record->vehicle->photoURL : 'https://via.placeholder.com/200' }}" class="rounded" style="width: 15rem;height: 15rem;">
                             <p>
                                 @if($record->driver)
                             <ul style="list-style: none;padding-left: 0">
@@ -74,7 +74,7 @@
                             <h5>
                                 Cédula: {{ $record->driver->dni }}
                             </h5>
-                            <img src="https://picsum.photos/500" class="rounded" style="width: 15rem;height: 15rem;">
+                            <img src="{{ $record->driver->photoURL?$record->driver->photoURL : 'https://via.placeholder.com/200' }}" class="rounded" style="width: 15rem;height: 15rem;">
                             <p>
                             <ul style="list-style: none;padding-left: 0">
                                 <li>

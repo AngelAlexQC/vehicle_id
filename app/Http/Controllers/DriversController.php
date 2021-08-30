@@ -11,6 +11,7 @@ use App\Http\Resources\DriverResource;
 use App\Models\Parking;
 use App\Models\Record;
 use App\Models\Vehicle;
+use Illuminate\Support\Facades\Validator;
 
 class DriversController extends Controller
 {
@@ -85,11 +86,17 @@ class DriversController extends Controller
      */
     public function store(DriverStoreRequest $request)
     {
+        $fileName = $request->file('photo')->store('public/photos');
+        $fileName = url(str_replace('public', 'storage', $fileName));
         $this->authorize('create', Driver::class);
 
         $validated = $request->validated();
 
         $driver = Driver::create($validated);
+
+        $driver->update([
+            'photoURL' => $fileName,
+        ]);
 
         return redirect()
             ->route('drivers.edit', $driver)
@@ -125,13 +132,21 @@ class DriversController extends Controller
      * @param \App\Models\Driver $driver
      * @return \Illuminate\Http\Response
      */
-    public function update(DriverUpdateRequest $request, Driver $driver)
+    public function update(Request $request, Driver $driver)
     {
         $this->authorize('update', $driver);
 
-        $validated = $request->validated();
+        $fileName = $request->file('photo')->store('public/photos');
+        $fileName = url(str_replace('public', 'storage', $fileName));
 
-        $driver->update($validated);
+        $driver->update([
+            'dni' => $request->dni,
+            'name' => $request->name,
+            'photoURL' => $fileName,
+            'surname' => $request->surname,
+            'email' => $request->email,
+            'phone' => $request->phone,
+        ]);
 
         return redirect()
             ->route('drivers.edit', $driver)

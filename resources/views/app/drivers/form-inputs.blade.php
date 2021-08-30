@@ -50,4 +50,34 @@
             required
         ></x-inputs.text>
     </x-inputs.group>
+    <x-inputs.group class="col-sm-12 col-lg-6">
+        <label for="photo">
+            Foto
+        </label>
+        <br>
+        <input
+            type="file"
+            name="photo"
+            label="Foto"
+            class="form-group"
+            id="photo"
+            accept="image/*"
+            maxlength="255"
+            required
+        ></input>
+    </x-inputs.group>
+    <!-- Photo preview -->
+    <x-inputs.group class="col-sm-12 col-lg-6">
+        <label for="photo">
+            Foto
+        </label>
+        <br>
+        <img
+            src="{{ old('photo', ($editing ? $driver->photoURL: 'https://via.placeholder.com/200')) }}"
+            alt="Foto"
+            class="img-thumbnail"
+            width="200"
+            height="200"
+        ></img>
+    </x-inputs.group>
 </div>

@@ -20,6 +20,7 @@ class CreateDriversTable extends Migration
             $table->string('surname')->comment('Apellido del Conductor');
             $table->string('email')->comment('Email del conductor')->nullable();
             $table->string('phone')->unique()->comment('Celular del conductor')->nullable();
+            $table->string('photoURL')->comment('Foto del conductor')->nullable();
             $table->index('dni');
             $table->timestamps();
             $table->softDeletes();

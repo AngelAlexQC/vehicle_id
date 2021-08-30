@@ -21,6 +21,7 @@ class CreateVehiclesTable extends Migration
             $table->string('registration')->unique()->comment('Matrícula del Vehículo');
             $table->string('model')->comment('Modelo del Vehículo');
             $table->unsignedBigInteger('owner_id')->comment('Propietario del vehículo');
+            $table->string('photoURL')->nullable()->comment('URL de la foto del vehículo');
 
             $table->index('plate');
 

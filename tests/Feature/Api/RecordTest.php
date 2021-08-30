@@ -16,7 +16,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RecordsControllerTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     protected function setUp(): void
     {

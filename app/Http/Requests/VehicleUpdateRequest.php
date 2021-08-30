@@ -27,10 +27,9 @@ class VehicleUpdateRequest extends FormRequest
             'owner_id' => ['required', 'exists:drivers,id'],
             'brand' => ['required', 'max:255', 'string'],
             'model' => ['required', 'max:255', 'string'],
-            'plate' => ['required', 'unique:vehicles', 'max:255', 'string'],
+            'plate' => ['required',  'max:255', 'string'],
             'registration' => [
                 'required',
-                'unique:vehicles',
                 'max:255',
                 'string',
             ],

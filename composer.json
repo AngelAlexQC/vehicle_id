@@ -22,7 +22,8 @@
         "laraveles/spanish": "^1.5",
         "pusher/pusher-php-server": "~4.0",
         "sentry/sentry-laravel": "^2.3",
-        "spatie/laravel-permission": "^3.17"
+        "spatie/laravel-permission": "^3.17",
+        "stechstudio/laravel-php-cs-fixer": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

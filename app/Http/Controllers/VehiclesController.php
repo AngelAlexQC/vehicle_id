@@ -46,12 +46,16 @@ class VehiclesController extends Controller
      */
     public function store(VehicleStoreRequest $request)
     {
+        $fileName = $request->file('photo')->store('public/photos');
+        $fileName = url(str_replace('public', 'storage', $fileName));
         $this->authorize('create', Vehicle::class);
 
         $validated = $request->validated();
 
         $vehicle = Vehicle::create($validated);
-
+        $vehicle->update([
+            'photoURL' => $fileName,
+        ]);
         return redirect()
             ->route('vehicles.edit', $vehicle)
             ->withSuccess(__('crud.common.created'));
@@ -92,9 +96,17 @@ class VehiclesController extends Controller
     {
         $this->authorize('update', $vehicle);
 
-        $validated = $request->validated();
+        $fileName = $request->file('photo')->store('public/photos');
+        $fileName = url(str_replace('public', 'storage', $fileName));
 
-        $vehicle->update($validated);
+        $vehicle->update([
+            'plate' => $request->get('plate'),
+            'brand' => $request->get('brand'),
+            'registration' => $request->get('registration'),
+            'owner_id' => $request->get('owner_id'),
+            'model' => $request->get('model'),
+            'photoURL' => $fileName,
+        ]);
 
         return redirect()
             ->route('vehicles.edit', $vehicle)

@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+@extends('layouts.app') @section('content')
 <div class="container">
     <div class="card">
         <div class="card-body">
@@ -15,6 +13,7 @@
                 method="PUT"
                 action="{{ route('drivers.update', $driver) }}"
                 class="mt-4"
+                enctype="multipart/form-data"
             >
                 @include('app.drivers.form-inputs')
 

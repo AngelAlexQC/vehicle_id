@@ -15,6 +15,7 @@
                 method="PUT"
                 action="{{ route('vehicles.update', $vehicle) }}"
                 class="mt-4"
+                enctype="multipart/form-data"
             >
                 @include('app.vehicles.form-inputs')
 

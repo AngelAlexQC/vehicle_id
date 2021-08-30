@@ -19,6 +19,7 @@ class Vehicle extends Model
         'registration',
         'owner_id',
         'model',
+        'photoURL'
     ];
 
     protected $searchableFields = ['*'];

@@ -38,7 +38,7 @@ class PermissionController extends Controller
         ]);
 
         $permission = Permission::create($validated);
-        
+
         $roles = Role::find($request->roles);
         $permission->syncRoles($roles);
 
@@ -71,7 +71,7 @@ class PermissionController extends Controller
         ]);
 
         $permission->update($validated);
-        
+
         $roles = Role::find($request->roles);
         $permission->syncRoles($roles);
 

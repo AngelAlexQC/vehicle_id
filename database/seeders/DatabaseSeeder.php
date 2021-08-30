@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         $path = 'database/seeders/drivers.sql';
         DB::unprepared(file_get_contents($path));
         $this->command->info('Drives table seeded!');

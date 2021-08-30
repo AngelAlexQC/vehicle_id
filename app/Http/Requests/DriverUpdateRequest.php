@@ -24,11 +24,12 @@ class DriverUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'dni' => ['required', 'unique:drivers', 'max:255', 'string'],
+            'dni' => ['required',  'max:255', 'string'],
             'name' => ['required', 'max:255', 'string'],
             'surname' => ['required', 'max:255', 'string'],
             'email' => ['required', 'email'],
             'phone' => ['required', 'unique:drivers', 'max:255', 'string'],
+            'photo' => ['required', 'image'],
         ];
     }
 }
