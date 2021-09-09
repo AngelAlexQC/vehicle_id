@@ -150,7 +150,7 @@ class RecordsController extends Controller
             $records = $records->where('created_at', '>=', $request->from);
         }
         if ($to) {
-            $records = $records->where('created_at', '<=', $request->to);
+            $records = $records->where('created_at', '<=', $request->to . ' 23:59:59');
         }
         if ($parking_id) {
             $records = $records->where('parking_id', $request->parking_id);
@@ -187,7 +187,7 @@ class RecordsController extends Controller
             $records = $records->where('created_at', '>=', $request->from);
         }
         if ($to) {
-            $records = $records->where('created_at', '<=', $request->to);
+            $records = $records->where('created_at', '<=', $request->to . ' 23:59:59');
         }
         if ($parking_id) {
             $records = $records->where('parking_id', $request->parking_id);
