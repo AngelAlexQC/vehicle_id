@@ -41,30 +41,42 @@ class DriversController extends Controller
      */
     public function findByDNI(Request $request)
     {
-        $driver = Driver::where('dni', $request->dni)->orWhere(
-            'placas',
-            'LIKE',
-            '%' . $request->plate . '%'
-        )->first();
+        $driver = null;
+        // Find by dni if isset
+        if ($request->has('dni')) {
+            $driver = Driver::where('dni', $request->get('dni'))->first();
+        }
+
+        // If driver not found find by plate if plate isset
+        if (!$driver && $request->get('plate') != null) {
+            $driver = Driver::where(
+                'placas',
+                'LIKE',
+                '%' . $request->plate . '%'
+            )->first();
+        }
+        if (!$driver) {
+            $record = Record::create([
+                'dni' => $request->dni,
+                'plate' => $request->plate,
+                'parking_id' => $request->parking_id,
+                'type' => $request->type,
+                'driver_id' => null,
+                'parking_id' => null,
+                'user_id' => $request->user()->id
+            ]);
+            return redirect('home')->withErrors(['No se encontró el conductor con la cédula o placa ingresada.']);
+        }
         $parking = Parking::where('id', $request->parking_id)->first();
-        $driver_id = null;
-        $parking_id = null;
-        if ($driver) {
-            $driver_id = $driver->id;
-        }
-        if ($parking) {
-            $parking_id = $parking->id;
-        }
         $record = Record::create([
             'dni' => $request->dni,
             'plate' => $request->plate,
             'parking_id' => $request->parking_id,
             'type' => $request->type,
-            'driver_id' => $driver_id,
-            'parking_id' => $parking_id,
+            'driver_id' => $driver->id,
+            'parking_id' => $parking->id,
             'user_id' => $request->user()->id
         ]);
-        $this->authorize('view', $driver);
         return redirect('home');
     }
 
