@@ -43,8 +43,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label for="parking_id">Parqueadero</label>
-                                            <select class="form-control" name="parking_id" id="parking_id" required>
+                                            <label for="parking">Parqueadero</label>
+                                            <select class="form-control" name="parking" id="parking" required>
                                                 @foreach ($parkings as $parking)
                                                 <option value="{{$parking->id}}">{{$parking->tag}}</option>
                                                 @endforeach

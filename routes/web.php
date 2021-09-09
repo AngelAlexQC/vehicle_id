@@ -48,4 +48,13 @@ Route::prefix('/')
         Route::resource('vehicles', VehiclesController::class);
         Route::resource('parkings', ParkingsController::class);
         Route::resource('records', RecordsController::class);
+        Route::get(
+            'reports',
+            RecordsController::class . '@report'
+        )->name('reports');
+        /* Export to excel */
+        Route::get(
+            'export',
+            RecordsController::class . '@export'
+        )->name('reports.export');
     });

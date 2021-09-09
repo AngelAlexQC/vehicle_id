@@ -14,8 +14,11 @@ class ParkingSeeder extends Seeder
      */
     public function run()
     {
-        Parking::factory()
-            ->count(5)
-            ->create();
+        for ($i = 1; $i <= 10; $i++) {
+            Parking::create([
+                'tag' => 'Parqueadero ' . $i,
+                'location' => 'Calle de prueba ' . $i,
+            ]);
+        }
     }
 }

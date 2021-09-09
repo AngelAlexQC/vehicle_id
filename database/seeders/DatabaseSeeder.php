@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $path = 'database/seeders/drivers.sql';
         DB::unprepared(file_get_contents($path));
         $this->command->info('Drives table seeded!');
+        $this->call(ParkingSeeder::class);
         // Adding an admin user
         /* $user = User::create([
             'name', 'Administrador',

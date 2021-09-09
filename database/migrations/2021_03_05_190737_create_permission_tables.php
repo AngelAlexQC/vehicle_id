@@ -161,20 +161,6 @@ class CreatePermissionTables extends Migration
         if ($user) {
             $user->assignRole($adminRole);
         }
-        Driver::create([
-            'dni' => '0987654322',
-            'name' => 'Conductor',
-            'surname' => 'Del sistema',
-            'email' => 'admin@admin.com',
-            'phone' => '0987654322'
-        ]);
-        Vehicle::create([
-            'brand' => 'Chevrolet',
-            'model' => 'Impala 67',
-            'owner_id' => 1,
-            'plate' => 'MBF5630',
-            'registration' => 'EC12345678'
-        ]);
     }
 
     /**

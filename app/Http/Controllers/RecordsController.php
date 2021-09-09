@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RecordsExport;
 use App\Models\User;
 use App\Models\Record;
 use App\Models\Driver;
 use Illuminate\Http\Request;
 use App\Http\Requests\RecordStoreRequest;
 use App\Http\Requests\RecordUpdateRequest;
+use App\Models\Parking;
+use Maatwebsite\Excel\Excel;
 
 class RecordsController extends Controller
 {
+    private $excel;
+
+    public function __construct(Excel $excel)
+    {
+        $this->excel = $excel;
+    }
     /**
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
@@ -118,5 +127,103 @@ class RecordsController extends Controller
         return redirect()
             ->route('records.index')
             ->withSuccess(__('crud.common.removed'));
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function report(Request $request)
+    {
+        $this->authorize('view-any', Record::class);
+        $type = $request->type;
+        $from = $request->from;
+        $to = $request->to;
+        $parking_id = $request->parking_id;
+        $records = Record::all();
+        $parkings = Parking::all();
+        if ($type) {
+            $records = $records->where('type', $request->get('type'));
+        }
+        if ($from) {
+            $records = $records->where('created_at', '>=', $request->from);
+        }
+        if ($to) {
+            $records = $records->where('created_at', '<=', $request->to);
+        }
+        if ($parking_id) {
+            $records = $records->where('parking_id', $request->parking_id);
+        }
+
+        return view('reports', compact(
+            'records',
+            'parkings',
+            'parking_id',
+            'type',
+            'from',
+            'to'
+        ));
+    }
+
+    /**
+     * Export to excel
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function export(Request $request)
+    {
+        $this->authorize('view-any', Record::class);
+        $type = $request->type;
+        $from = $request->from;
+        $to = $request->to;
+        $parking_id = $request->parking_id;
+        $records = Record::all();
+        if ($type) {
+            $records = $records->where('type', $request->get('type'));
+        }
+        if ($from) {
+            $records = $records->where('created_at', '>=', $request->from);
+        }
+        if ($to) {
+            $records = $records->where('created_at', '<=', $request->to);
+        }
+        if ($parking_id) {
+            $records = $records->where('parking_id', $request->parking_id);
+        }
+
+        // Map the fields
+        $records = $records->map(function ($record) {
+            return [
+                'id' => $record->id,
+                'cedula' => $record->dni,
+                'placa' => $record->plate,
+                'driver_id' => $record->driver_id,
+                'conductor' => $record->driver->name,
+                'user_id' => $record->user_id,
+                'usuario' => $record->user->name,
+                'parking_id' => $record->parking_id,
+                'parqueadero' => $record->parking->tag,
+                'tipo' => $record->type,
+                'fecha' => $record->created_at,
+            ];
+        });
+
+        // Add the header
+        $records->prepend([
+            'id',
+            'cedula',
+            'placa',
+            'driver_id',
+            'conductor',
+            'user_id',
+            'usuario',
+            'parking_id',
+            'parqueadero',
+            'tipo',
+            'fecha',
+        ]);
+        return $this->excel->download(new RecordsExport($records), 'records.xlsx');
     }
 }

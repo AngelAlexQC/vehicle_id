@@ -20,6 +20,7 @@
         "laravel/ui": "^3.0",
         "laravelcollective/html": "^6.2",
         "laraveles/spanish": "^1.5",
+        "maatwebsite/excel": "^3.1",
         "pusher/pusher-php-server": "~4.0",
         "sentry/sentry-laravel": "^2.3",
         "spatie/laravel-permission": "^3.17",

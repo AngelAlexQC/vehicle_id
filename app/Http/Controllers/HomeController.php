@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Parking;
 use App\Models\Record;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,9 +24,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $record = Record::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first();
-        return view('home')->with('record', $record);
+        $parkings = Parking::all();
+        $parking_id = $request->parking_id;
+        return view('home')->with(['record' => $record, 'parkings' => $parkings]);
     }
 }

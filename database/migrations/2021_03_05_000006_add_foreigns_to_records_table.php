@@ -26,10 +26,6 @@ class AddForeignsToRecordsTable extends Migration
                 ->foreign('driver_id')
                 ->references('id')
                 ->on('drivers');
-            $table
-                ->foreign('vehicle_id')
-                ->references('id')
-                ->on('vehicles');
         });
     }
 

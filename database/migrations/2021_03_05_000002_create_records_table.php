@@ -17,12 +17,10 @@ class CreateRecordsTable extends Migration
             $table->bigIncrements('id')->comment('Identicador para el sistema');
             $table->string('dni')->comment('Cédula buscada')->nullable();
             $table->string('plate')->comment('Placa buscada')->nullable();
-            $table->string('parking')->comment('Etiqueta unica buscada')->nullable();
+            $table->string('type')->comment('Entrada o Salida')->nullable();
             $table->unsignedBigInteger('user_id')->nullable()->comment('Usuario');
             $table->unsignedBigInteger('parking_id')->nullable()->comment('Parqueadero');
             $table->unsignedBigInteger('driver_id')->nullable()->comment('Conductor');
-            $table->unsignedBigInteger('vehicle_id')->nullable()->comment('Vehículo');
-
             $table->timestamps();
             $table->softDeletes();
         });

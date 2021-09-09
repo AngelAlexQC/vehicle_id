@@ -20,7 +20,7 @@ class Record extends Model
         'user_id',
         'parking_id',
         'driver_id',
-        'vehicle_id'
+        'type'
     ];
 
     protected $searchableFields = ['*'];
