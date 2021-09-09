@@ -196,17 +196,17 @@ class RecordsController extends Controller
         // Map the fields
         $records = $records->map(function ($record) {
             return [
-                'id' => $record->id,
-                'cedula' => $record->dni,
-                'placa' => $record->plate,
-                'driver_id' => $record->driver_id,
-                'conductor' => $record->driver->name,
-                'user_id' => $record->user_id,
-                'usuario' => $record->user->name,
-                'parking_id' => $record->parking_id,
-                'parqueadero' => $record->parking->tag,
-                'tipo' => $record->type,
-                'fecha' => $record->created_at,
+                'id' => $record ? $record->id : null,
+                'cedula' => $record ? $record->dni : null,
+                'placa' => $record ? $record->plate : null,
+                'driver_id' => $record->driver_id ? $record->driver_id : null,
+                'conductor' => $record->driver ? $record->driver->name : null,
+                'user_id' => $record->user_id ? $record->user_id : null,
+                'usuario' => $record->user ? $record->user->name : null,
+                'parking_id' => $record->parking_id ? $record->parking_id : null,
+                'parqueadero' => $record->parking ? $record->parking->tag : null,
+                'tipo' => $record->type ? $record->type : null,
+                'fecha' => $record ? $record->created_at : null,
             ];
         });
 
