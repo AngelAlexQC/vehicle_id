@@ -42,6 +42,7 @@ class DriversController extends Controller
     public function findByDNI(Request $request)
     {
         $driver = null;
+        $parking = Parking::where('id', $request->parking_id)->first();
         // Find by dni if isset
         if ($request->has('dni')) {
             $driver = Driver::where('dni', $request->get('dni'))->first();
@@ -62,12 +63,11 @@ class DriversController extends Controller
                 'parking_id' => $request->parking_id,
                 'type' => $request->type,
                 'driver_id' => null,
-                'parking_id' => null,
+                'parking_id' => $parking->id,
                 'user_id' => $request->user()->id
             ]);
             return redirect('home')->withErrors(['No se encontró el conductor con la cédula o placa ingresada.']);
         }
-        $parking = Parking::where('id', $request->parking_id)->first();
         $record = Record::create([
             'dni' => $request->dni,
             'plate' => $request->plate,
