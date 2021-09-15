@@ -11,7 +11,8 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="">Buscar conductor o placa:</label>
-                    <input placeholder="Placa, cédula, nombre o apellido" type="text" class="form-control" id="search" name="search" value="{{$search}}">
+                    <input placeholder="Placa, cédula, nombre o apellido" type="text" class="form-control" id="search"
+                        name="search" value="{{$search}}">
                 </div>
             </div>
             <!-- Filtrar por entrada o salida -->
@@ -19,7 +20,7 @@
                 <div class="form-group">
                     <label for="">Entrada o Salida:</label>
                     <select class="form-control" id="type" name="type">
-                        <option selected disabled>Seleccione una opción</option>
+                        <option selected>Todos</option>
                         <option {{$type == 'Entrada' ? 'selected' : ''}}>Entrada</option>
                         <option {{$type == 'Salida' ? 'selected' : ''}}>Salida</option>
                     </select>
@@ -49,7 +50,7 @@
                 <div class="form-group">
                     <label for="parking_id">Parqueadero</label>
                     <select class="form-control" name="parking_id" id="parking_id" required>
-                        <option selected disabled>Seleccione una opción</option>
+                        <option selected>Todos</option>
                         @foreach ($parkings as $parking)
                         <option value="{{$parking->id}}" {{$parking->id == $parking_id ? 'selected' : ''}}>
                             {{$parking->tag}}
