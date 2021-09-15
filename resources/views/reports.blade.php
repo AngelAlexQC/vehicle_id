@@ -75,15 +75,16 @@
     <div class="table-responsive">
         <table class="table table-striped table-bordered table-hover">
             <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Cédula Buscada</th>
-                    <th>Placa Buscada</th>
-                    <th>Conductor - Placas</th>
-                    <th>Parqueadero</th>
-                    <th>Entrada o Salida</th>
-                    <th>Usuario</th>
-                    <th>Fecha y Hora</th>
+                <tr class="text-center align-middle">
+                    <th class="align-middle">ID</th>
+                    <th class="align-middle">Cédula Buscada</th>
+                    <th class="align-middle">Placa Buscada</th>
+                    <th class="align-middle">Conductor</th>
+                    <th class="align-middle">Placas</th>
+                    <th class="align-middle">Parqueadero</th>
+                    <th class="align-middle">Entrada o Salida</th>
+                    <th class="align-middle">Usuario</th>
+                    <th class="align-middle">Fecha y Hora</th>
                 </tr>
             </thead>
             <tbody>
@@ -94,10 +95,9 @@
                     <td>{{ $record->plate ? $record->plate : '-' }}</td>
                     <td>
                         {{ $record->driver ? $record->driver->name." ".$record->driver->surname  : '-' }}
-                        @if ($record->driver)
-                        <br>
+                    </td>
+                    <td>
                         {{ $record->driver ? $record->driver->placas : '' }}
-                        @endif
                     </td>
                     <td>{{ $record->parking ? $record->parking->tag : '-' }}</td>
                     <td>{{ $record->type ? $record->type : '-' }}</td>

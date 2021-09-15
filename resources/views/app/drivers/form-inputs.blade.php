@@ -35,7 +35,7 @@
         </label>
         <br>
         <input type="file" name="photo" label="Foto" class="form-group" id="photo" accept="image/*" maxlength="255" {{
-                 $driver->photoURL!='https://via.placeholder.com/200' ? '' : 'required'
+            $editing ? '' : 'required'
             }}></input>
     </x-inputs.group>
     <!-- Photo preview -->
