@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <label for="">Entrada o Salida:</label>
                     <select class="form-control" id="type" name="type">
-                        <option selected>Todos</option>
+                        <option selected disabled>Todos</option>
                         <option {{$type == 'Entrada' ? 'selected' : ''}}>Entrada</option>
                         <option {{$type == 'Salida' ? 'selected' : ''}}>Salida</option>
                     </select>
@@ -50,7 +50,7 @@
                 <div class="form-group">
                     <label for="parking_id">Parqueadero</label>
                     <select class="form-control" name="parking_id" id="parking_id" required>
-                        <option selected>Todos</option>
+                        <option selected disabled>Todos</option>
                         @foreach ($parkings as $parking)
                         <option value="{{$parking->id}}" {{$parking->id == $parking_id ? 'selected' : ''}}>
                             {{$parking->tag}}
