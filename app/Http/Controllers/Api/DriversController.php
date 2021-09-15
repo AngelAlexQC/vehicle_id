@@ -72,33 +72,48 @@ class DriversController extends Controller
      */
     public function findByDNI(Request $request, $dni)
     {
-        $driver = Driver::where('dni', $dni)->with(['vehicles'])->first();
-        $vehicle = Vehicle::where('plate', $request->plate)->first();
-        $parking = Parking::where('tag', $request->parking)->first();
-        $driver_id = null;
-        $vehicle_id = null;
-        $parking_id = null;
-        if ($driver) {
-            $driver_id = $driver->id;
+        $driver = null;
+        $parking = Parking::where('id', $request->parking_id)->first();
+        // Find by dni if isset
+
+        $driver = Driver::where('dni', $dni)->first();
+
+
+        // If driver not found find by plate if plate isset
+        if (!$driver && $request->get('plate') != null) {
+            $driver = Driver::where(
+                'placas',
+                'LIKE',
+                '%' . $request->plate . '%'
+            )->first();
         }
-        if ($vehicle) {
-            $vehicle_id = $vehicle->id;
-        }
-        if ($parking) {
-            $parking_id = $parking->id;
+        if (!$driver) {
+            $record = Record::create([
+                'dni' => $request->dni,
+                'plate' => $request->plate,
+                'parking_id' => $request->parking_id,
+                'type' => $request->type,
+                'driver_id' => null,
+                'parking_id' => $parking->id,
+                'user_id' => Auth::user()->id
+            ]);
+            // Return Json Error
+            return $this->error('No se encontró el conductor', 404);
         }
         $record = Record::create([
             'dni' => $request->dni,
             'plate' => $request->plate,
-            'parking' => $request->parking,
-            'driver_id' => $driver_id,
-            'vehicle_id' => $vehicle_id,
-            'parking_id' => $parking_id,
-            'user_id' => $request->user() ? $request->user()->id : null
+            'parking_id' => $request->parking_id,
+            'type' => $request->type,
+            'driver_id' => $driver->id,
+            'parking_id' => $parking->id,
+            'user_id' => Auth::user()->id
         ]);
 
         broadcast(new RecordSaved($record))->toOthers();
-        return $this->success(new DriverResource($record->load(['parking', 'vehicle', 'user', 'driver'])));
+        return $this->success(new DriverResource($record->load([
+            'parking', 'user', 'driver'
+        ])));
     }
 
     /**

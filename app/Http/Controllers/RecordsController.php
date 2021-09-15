@@ -140,6 +140,7 @@ class RecordsController extends Controller
         $type = $request->type;
         $from = $request->from;
         $to = $request->to;
+        $search = $request->get('search', '');
         $parking_id = $request->parking_id;
         $records = Record::all();
         $parkings = Parking::all();
@@ -155,6 +156,12 @@ class RecordsController extends Controller
         if ($parking_id) {
             $records = $records->where('parking_id', $request->parking_id);
         }
+        if ($search) {
+            // Search in all of the fields of drivers
+            $drivers = Driver::where('name', 'LIKE', '%' . $search . '%')->orWhere('surname', 'LIKE', '%' . $search . '%')->orWhere('placas', 'LIKE', '%' . $search . '%')
+                ->orWhere('dni', 'LIKE', '%' . $search . '%')->get();
+            $records = $records->whereIn('driver_id', $drivers->pluck('id'));
+        }
 
         return view('reports', compact(
             'records',
@@ -162,7 +169,8 @@ class RecordsController extends Controller
             'parking_id',
             'type',
             'from',
-            'to'
+            'to',
+            'search'
         ));
     }
 

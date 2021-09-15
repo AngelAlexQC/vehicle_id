@@ -34,8 +34,9 @@
             Foto
         </label>
         <br>
-        <input type="file" name="photo" label="Foto" class="form-group" id="photo" accept="image/*" maxlength="255"
-            required></input>
+        <input type="file" name="photo" label="Foto" class="form-group" id="photo" accept="image/*" maxlength="255" {{
+                 $driver->photoURL!='https://via.placeholder.com/200' ? '' : 'required'
+            }}></input>
     </x-inputs.group>
     <!-- Photo preview -->
     <x-inputs.group class="col-sm-12 col-lg-6">

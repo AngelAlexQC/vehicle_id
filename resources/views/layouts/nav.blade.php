@@ -63,7 +63,8 @@
                 @endif
                 @can('view-any', App\Models\Record::class)
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('reports') }}">Reportes</a>
+                    <a class="nav-link"
+                        href="{{ route('reports') }}?from={{date('Y-m-d') }}&to={{date('Y-m-d')}}">Reportes</a>
                 </li>
                 @endcan
                 @endauth

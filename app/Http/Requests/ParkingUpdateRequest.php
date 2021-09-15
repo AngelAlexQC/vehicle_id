@@ -24,7 +24,7 @@ class ParkingUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'tag' => ['required', 'unique:parkings', 'max:255', 'string'],
+            'tag' => ['required', 'max:255', 'string'],
             'location' => ['required', 'string'],
         ];
     }

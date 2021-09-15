@@ -29,7 +29,7 @@ use App\Http\Controllers\Api\ParkingsRecordsController;
 Route::post('/login', [AuthController::class, 'login'])->name('api.login');
 
 // Driver by DNI
-Route::get('drivers/find/{dni}', [
+Route::middleware('auth:sanctum')->get('drivers/find/{dni}', [
     DriversController::class,
     'findByDNI',
 ])->name('drivers.vehicles.find');

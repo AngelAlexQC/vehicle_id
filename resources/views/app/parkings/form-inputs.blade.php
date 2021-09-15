@@ -16,7 +16,7 @@
             name="location"
             label="Ubicación"
             value="{{ old('location', ($editing ? $parking->location : '')) }}"
-            maxlength="10"
+            maxlength="255"
             required
         ></x-inputs.text>
     </x-inputs.group>

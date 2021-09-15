@@ -146,10 +146,12 @@ class DriversController extends Controller
     public function update(Request $request, Driver $driver)
     {
         $this->authorize('update', $driver);
-
-        $fileName = $request->file('photo')->store('public/photos');
-        $fileName = url(str_replace('public', 'storage', $fileName));
-
+        if ($request->hasFile('photo')) {
+            $fileName = $request->file('photo')->store('public/photos');
+            $fileName = url(str_replace('public', 'storage', $fileName));
+        } else {
+            $fileName = $driver->photoURL;
+        }
         $driver->update([
             'dni' => $request->dni,
             'name' => $request->name,
@@ -157,6 +159,7 @@ class DriversController extends Controller
             'surname' => $request->surname,
             'email' => $request->email,
             'phone' => $request->phone,
+            'placas' => $request->placas,
         ]);
 
         return redirect()

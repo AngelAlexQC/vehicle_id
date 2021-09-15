@@ -7,8 +7,15 @@
     </h4>
     <form method="get">
         <div class="row mb-3">
-            <!-- Filtrar por entrada o salida -->
+            <!-- Buscar texto en cualquier campo -->
             <div class="col-md-3">
+                <div class="form-group">
+                    <label for="">Buscar conductor o placa:</label>
+                    <input placeholder="Placa, cédula, nombre o apellido" type="text" class="form-control" id="search" name="search" value="{{$search}}">
+                </div>
+            </div>
+            <!-- Filtrar por entrada o salida -->
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="">Entrada o Salida:</label>
                     <select class="form-control" id="type" name="type">
@@ -19,7 +26,7 @@
                 </div>
             </div>
             <!-- Rango de Fecha y Hora -->
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="form-group">
                     <label for="">Rango de Fechas:</label>
                     <div class="input-group">
@@ -38,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label for="parking_id">Parqueadero</label>
                     <select class="form-control" name="parking_id" id="parking_id" required>
@@ -71,7 +78,7 @@
                     <th>ID</th>
                     <th>Cédula Buscada</th>
                     <th>Placa Buscada</th>
-                    <th>Conductor Encontrado</th>
+                    <th>Conductor - Placas</th>
                     <th>Parqueadero</th>
                     <th>Entrada o Salida</th>
                     <th>Usuario</th>
@@ -84,7 +91,13 @@
                     <td>{{ $record->id ? $record->id : '-' }}</td>
                     <td>{{ $record->dni ? $record->dni : '-' }}</td>
                     <td>{{ $record->plate ? $record->plate : '-' }}</td>
-                    <td>{{ $record->driver ? $record->driver->name." ".$record->driver->surname  : '-' }}</td>
+                    <td>
+                        {{ $record->driver ? $record->driver->name." ".$record->driver->surname  : '-' }}
+                        @if ($record->driver)
+                        <br>
+                        {{ $record->driver ? $record->driver->placas : '' }}
+                        @endif
+                    </td>
                     <td>{{ $record->parking ? $record->parking->tag : '-' }}</td>
                     <td>{{ $record->type ? $record->type : '-' }}</td>
                     <td>{{ $record->user ? $record->user->name." ".$record->user->surname  : '-' }}</td>
