@@ -1,8 +1,8 @@
 import requests
 import json
 
-apiURL = 'http://vehicle.test/api/login'
-findDriverURL = 'http://vehicle.test/api/drivers/find/'
+apiURL = 'https://vehicle.cicmanabi.com/api/login'
+findDriverURL = 'https://vehicle.cicmanabi.com/api/drivers/find/'
 parking_id = 1  # ID del Parqueadero
 tipo = 'Entrada'  # Entrada o Salida
 
