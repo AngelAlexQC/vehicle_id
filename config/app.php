@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Spatie\Backup\BackupServiceProvider::class,
         /*
          * Application Service Providers...
          */
